@@ -1,38 +1,274 @@
-.App {
-  text-align: center;
+.headerbody {
+  border: solid 2px black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f8f9fa;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  display: flex;
+  flex-direction: row;
+}
+.navro {
+  display: flex;
+  margin-right: 50px;
+  align-items: center;
+}
+.navro > li {
+  margin-right: 20px;
+  list-style: none;
+  font-size: 18px;
+  color: #343a40;
+}
+.navro > li:hover {
+  cursor: pointer;
+  color: #007bff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  width: 50px;
+  height: 50px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.BodyContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.SearchBar {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Rest-Card {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 20px;
+  width: 100%;
+}
+
+.RestCard-container {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.RestCard-container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.RestCard-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.RestCard-container h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #343a40;
+}
+.align_left {
+  text-align: left;
+  padding: 10px;
+}
+
+.FooterBody {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navro {
+    flex-direction: column;
+    margin-right: 0;
+  }
+  .navro > li {
+    margin-bottom: 10px;
+  }
+  .Rest-Card {
+    justify-content: center;
+  }
+  .RestCard-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerbody {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .SearchBar {
+    font-size: 14px;
+  }
+  .RestCard-container img {
+    height: 150px;
+  }
+}
+
+.ShimmerCard-container {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+}
+
+.shimmer-img,
+.shimmer-text {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.shimmer-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.shimmer-text {
+  height: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.shimmer-title {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.shimmer-cuisines,
+.shimmer-rating,
+.shimmer-cost,
+.shimmer-delivery {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.btn {
+  background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:active {
+  background-color: #004080;
+  transform: scale(0.95);
+}
+.search_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.SearchBar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.searchbtn,
+.topbtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 350px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.searchbtn:hover,
+.topbtn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.searchbtn:active,
+.topbtn:active {
+  background-color: #004080;
+  transform: scale(0.95);
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Optional: Remove default blue color */
+}
+
+.functionComponent {
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.classComponent {
+  border: 1px solid rgb(1, 1, 6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
