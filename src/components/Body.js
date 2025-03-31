@@ -2,10 +2,13 @@ import ResturantCard from "./ResturantCard";
 import { useState, useEffect } from "react";
 import ShimmerCard from "./utils/Shimmer_card";
 import { Link } from "react-router-dom";
+
+import useOnlineStatus from "./utils/Hooks/online";
 const Body = () => {
   let [searchText, setsearchText] = useState("");
   let [TopratedRestaurant, setTopratedRestaurant] = useState([]);
   let [filterdeRestaurent, setfilteredRestaurent] = useState([]);
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchdat();
@@ -40,7 +43,9 @@ const Body = () => {
     let filtered = TopratedRestaurant.filter((res) => res.info.avgRating > 4);
     setfilteredRestaurent(filtered);
   };
-
+  if (onlineStatus === false) {
+    return <h1>Opps your offline please check your internet connection </h1>;
+  }
   if (TopratedRestaurant.length === 0) {
     return (
       <div className="BodyContainer">
