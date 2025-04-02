@@ -4,6 +4,7 @@ import ShimmerCard from "./utils/Shimmer_card";
 import { Link } from "react-router-dom";
 
 import useOnlineStatus from "./utils/Hooks/online";
+
 const Body = () => {
   let [searchText, setsearchText] = useState("");
   let [TopratedRestaurant, setTopratedRestaurant] = useState([]);
@@ -13,7 +14,9 @@ const Body = () => {
   useEffect(() => {
     fetchdat();
   }, []);
+
   const PrometedRestCard = PromotedCard(ResturantCard);
+
   const fetchdat = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.956924&lng=77.701127&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -43,13 +46,19 @@ const Body = () => {
     let filtered = TopratedRestaurant.filter((res) => res.info.avgRating > 4);
     setfilteredRestaurent(filtered);
   };
+
   if (onlineStatus === false) {
-    return <h1>Opps your offline please check your internet connection </h1>;
+    return (
+      <h1 className="text-center text-xl font-bold text-red-500">
+        Oops! You're offline. Please check your internet connection.
+      </h1>
+    );
   }
+
   if (TopratedRestaurant.length === 0) {
     return (
-      <div className="BodyContainer">
-        <div className="Rest-Card">
+      <div className="p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array(10)
             .fill("")
             .map((_, index) => (
@@ -60,27 +69,37 @@ const Body = () => {
     );
   } else {
     return (
-      <div className="BodyContainer">
-        <div className="search_container">
+      <div className="p-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
           <input
-            className="SearchBar"
+            className="border border-gray-300 rounded-md p-2 w-full sm:w-1/2"
             value={searchText}
+            placeholder="Search Restaurants"
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
-          ></input>
-          <button className="searchbtn" onClick={handleSearch}>
+          />
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            onClick={handleSearch}
+          >
             Search
           </button>
-          <button className="topbtn" onClick={handleTopRated}>
-            TOP Rated Restaurant
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            onClick={handleTopRated}
+          >
+            Top Rated Restaurants
           </button>
         </div>
 
-        <div className="Rest-Card">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filterdeRestaurent.map((restdata) => (
-            <Link to={"/restaurant/" + restdata.info.id} key={restdata.info.id}>
-              {" "}
+            <Link
+              to={"/restaurant/" + restdata.info.id}
+              key={restdata.info.id}
+              className="block"
+            >
               {true ? (
                 <PrometedRestCard dataobj={restdata} />
               ) : (
