@@ -1,4 +1,4 @@
-import ResturantCard from "./ResturantCard";
+import ResturantCard, { PromotedCard } from "./ResturantCard";
 import { useState, useEffect } from "react";
 import ShimmerCard from "./utils/Shimmer_card";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ const Body = () => {
   useEffect(() => {
     fetchdat();
   }, []);
-
+  const PrometedRestCard = PromotedCard(ResturantCard);
   const fetchdat = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.956924&lng=77.701127&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -81,7 +81,11 @@ const Body = () => {
           {filterdeRestaurent.map((restdata) => (
             <Link to={"/restaurant/" + restdata.info.id} key={restdata.info.id}>
               {" "}
-              <ResturantCard dataobj={restdata} />
+              {true ? (
+                <PrometedRestCard dataobj={restdata} />
+              ) : (
+                <ResturantCard dataobj={restdata} />
+              )}
             </Link>
           ))}
         </div>
