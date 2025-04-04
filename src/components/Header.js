@@ -8,7 +8,7 @@ const Header = () => {
   const [btnVal, setbtnVal] = useState("Login");
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50  ">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <div>
