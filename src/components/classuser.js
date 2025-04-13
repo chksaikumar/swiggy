@@ -13,7 +13,6 @@ class UserClass extends React.Component {
     this.setState({ user: data });
   }
   render() {
-    console.log(this.state);
     return (
       <div className="classComponent">
         <h1>Name: {this.state.user.name}</h1>

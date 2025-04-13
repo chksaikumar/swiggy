@@ -6,6 +6,7 @@ import Error from "./components/Error";
 import Contact from "./components/ContactUs";
 import Body from "./components/Body";
 import Menu from "./components/Menu";
+import Cart from "./components/Cart";
 // import Grocery from '/components/Grocery'
 // import reportWebVitals from "./reportWebVitals";
 import "./App.css";
@@ -42,6 +43,10 @@ const Approuter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,

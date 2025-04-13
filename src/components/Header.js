@@ -1,12 +1,17 @@
 import { LOGO, CART } from "./public/public";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./utils/Hooks/online";
-
+import UserContext from "./utils/context/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const onlinestatus = useOnlineStatus();
   const [btnVal, setbtnVal] = useState("Login");
 
+  const { user } = useContext(UserContext);
+
+  const cartdata = useSelector((store) => store.cart.items);
+  // console.log(cartdata);
   return (
     <header className="bg-white shadow-md sticky top-0 z-50  ">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -57,12 +62,16 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <a href="#" className="relative">
+              <Link to="/cart" className="relative">
                 <img src={CART} alt="Cart" className="h-8 w-8 object-contain" />
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
-                  3
+                <span
+                  className={`absolute top-0 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1 transition-all duration-300 ease-out transform
+      ${cartdata.length > 0 ? "opacity-100 scale-100" : "opacity-0 scale-0"}
+    `}
+                >
+                  {cartdata.length}
                 </span>
-              </a>
+              </Link>
             </li>
           </ul>
           {/* Login/Logout Button */}
@@ -74,6 +83,7 @@ const Header = () => {
           >
             {btnVal}
           </button>
+          <h1>{user}</h1>
         </nav>
       </div>
     </header>
